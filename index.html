@@ -36,7 +36,6 @@
             font-family: 'IBM Plex Mono', monospace;
             overflow: hidden;
         }
-        /* ── Animated background grid ── */
         
         body::before {
             content: '';
@@ -56,7 +55,6 @@
             pointer-events: none;
             z-index: 0;
         }
-        /* ── Layout ── */
         
         .app {
             position: relative;
@@ -65,21 +63,19 @@
             grid-template-columns: 280px 1fr;
             height: 100vh;
         }
-        /* ── Sidebar ── */
+        /* Sidebar */
         
         .sidebar {
             background: var(--deep);
             border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            padding: 0;
             overflow: hidden;
         }
         
         .sidebar-header {
             padding: 28px 24px 20px;
             border-bottom: 1px solid var(--border);
-            position: relative;
         }
         
         .college-badge {
@@ -108,7 +104,6 @@
             font-weight: 700;
             color: var(--gold2);
             line-height: 1.2;
-            letter-spacing: 0.02em;
         }
         
         .badge-text span {
@@ -146,7 +141,6 @@
                 box-shadow: 0 0 3px #4ade80;
             }
         }
-        /* Topics */
         
         .topics {
             padding: 20px 16px;
@@ -199,14 +193,13 @@
             border-top: 1px solid var(--border);
             font-size: 10px;
             color: var(--muted);
-            letter-spacing: 0.05em;
         }
         
         .sidebar-footer a {
             color: var(--gold);
             text-decoration: none;
         }
-        /* ── Main chat area ── */
+        /* Main */
         
         .main {
             display: flex;
@@ -214,7 +207,6 @@
             height: 100vh;
             overflow: hidden;
         }
-        /* Top bar */
         
         .topbar {
             padding: 18px 32px;
@@ -231,7 +223,6 @@
             font-size: 20px;
             font-weight: 700;
             color: var(--white);
-            letter-spacing: 0.02em;
         }
         
         .topbar-title span {
@@ -241,7 +232,6 @@
         .topbar-meta {
             font-size: 11px;
             color: var(--muted);
-            letter-spacing: 0.05em;
         }
         /* Messages */
         
@@ -259,15 +249,10 @@
             width: 4px;
         }
         
-        .messages::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
         .messages::-webkit-scrollbar-thumb {
             background: var(--border);
             border-radius: 4px;
         }
-        /* Welcome card */
         
         .welcome-card {
             background: var(--card);
@@ -317,7 +302,6 @@
             opacity: 1;
             transform: translateY(-1px);
         }
-        /* Message rows */
         
         .msg-row {
             display: flex;
@@ -363,12 +347,11 @@
         }
         
         .bubble {
-            max-width: 68%;
+            max-width: 70%;
             padding: 14px 18px;
             border-radius: 14px;
             font-size: 13px;
-            line-height: 1.7;
-            white-space: pre-wrap;
+            line-height: 1.8;
         }
         
         .bubble.bot {
@@ -384,12 +367,21 @@
             color: #fff;
             box-shadow: 0 4px 16px rgba(58, 123, 213, 0.35);
         }
+        
+        .bubble strong {
+            color: var(--gold2);
+            font-weight: 600;
+        }
+        
+        .bubble br {
+            display: block;
+            margin: 2px 0;
+        }
         /* Typing */
         
         .typing-row {
             display: flex;
             gap: 14px;
-            animation: fadeSlide 0.3s ease;
         }
         
         .typing-bubble {
@@ -431,7 +423,7 @@
                 opacity: 1;
             }
         }
-        /* ── Input area ── */
+        /* Input */
         
         .input-area {
             padding: 20px 32px 24px;
@@ -494,7 +486,6 @@
         
         .send-btn:hover {
             transform: scale(1.06);
-            box-shadow: 0 6px 22px rgba(201, 168, 76, 0.5);
         }
         
         .send-btn:active {
@@ -511,94 +502,58 @@
             margin-top: 8px;
             font-size: 10px;
             color: var(--muted);
-            letter-spacing: 0.04em;
             text-align: center;
         }
     </style>
 </head>
 
 <body>
-
     <div class="app">
-
-        <!-- ── Sidebar ── -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="college-badge">
                     <div class="badge-icon">🎓</div>
                     <div class="badge-text">
-                        <h1>KLEIT</h1>
-                        <span>Admission Assistant</span>
-                    </div>
+                        <h1>KLEIT</h1><span>Admission Assistant</span></div>
                 </div>
                 <div class="status-bar">
-                    <div class="status-dot"></div>
-                    <span>AI Assistant Online</span>
-                </div>
+                    <div class="status-dot"></div><span>AI Assistant Online</span></div>
             </div>
-
             <div class="topics">
                 <div class="topics-label">Quick Topics</div>
-
-                <button class="topic-btn" onclick="quickAsk('Tell me about KLEIT college')">
-        <span class="t-icon">🏛️</span> About KLEIT
-      </button>
-                <button class="topic-btn" onclick="quickAsk('What courses are available at KLEIT?')">
-        <span class="t-icon">📚</span> Courses & Branches
-      </button>
-                <button class="topic-btn" onclick="quickAsk('How to apply for admission at KLEIT?')">
-        <span class="t-icon">📋</span> Admission Process
-      </button>
-                <button class="topic-btn" onclick="quickAsk('What is the eligibility criteria for KLEIT?')">
-        <span class="t-icon">✅</span> Eligibility Criteria
-      </button>
-                <button class="topic-btn" onclick="quickAsk('What is the fee structure at KLEIT?')">
-        <span class="t-icon">💰</span> Fee Structure
-      </button>
-                <button class="topic-btn" onclick="quickAsk('How to apply through KCET for KLEIT?')">
-        <span class="t-icon">📝</span> KCET Guidance
-      </button>
-                <button class="topic-btn" onclick="quickAsk('Tell me about COMEDK admission at KLEIT')">
-        <span class="t-icon">🎯</span> COMEDK Guidance
-      </button>
-                <button class="topic-btn" onclick="quickAsk('What are the placement opportunities at KLEIT?')">
-        <span class="t-icon">🏢</span> Placements
-      </button>
-                <button class="topic-btn" onclick="quickAsk('What facilities does KLEIT campus have?')">
-        <span class="t-icon">🏫</span> Campus Facilities
-      </button>
-                <button class="topic-btn" onclick="quickAsk('How to contact KLEIT?')">
-        <span class="t-icon">📞</span> Contact Info
-      </button>
+                <button class="topic-btn" onclick="quickAsk('Tell me about KLEIT college')"><span class="t-icon">🏛️</span> About KLEIT</button>
+                <button class="topic-btn" onclick="quickAsk('What courses are available at KLEIT?')"><span class="t-icon">📚</span> Courses & Branches</button>
+                <button class="topic-btn" onclick="quickAsk('How to apply for admission at KLEIT?')"><span class="t-icon">📋</span> Admission Process</button>
+                <button class="topic-btn" onclick="quickAsk('What is the eligibility criteria for KLEIT?')"><span class="t-icon">✅</span> Eligibility Criteria</button>
+                <button class="topic-btn" onclick="quickAsk('What is the fee structure at KLEIT?')"><span class="t-icon">💰</span> Fee Structure</button>
+                <button class="topic-btn" onclick="quickAsk('How to apply through KCET for KLEIT?')"><span class="t-icon">📝</span> KCET Guidance</button>
+                <button class="topic-btn" onclick="quickAsk('Tell me about COMEDK admission at KLEIT')"><span class="t-icon">🎯</span> COMEDK Guidance</button>
+                <button class="topic-btn" onclick="quickAsk('What are the placement opportunities at KLEIT?')"><span class="t-icon">🏢</span> Placements</button>
+                <button class="topic-btn" onclick="quickAsk('What facilities does KLEIT campus have?')"><span class="t-icon">🏫</span> Campus Facilities</button>
+                <button class="topic-btn" onclick="quickAsk('How to contact KLEIT?')"><span class="t-icon">📞</span> Contact Info</button>
             </div>
-
-            <div class="sidebar-footer">
-                <a href="https://kleit.ac.in" target="_blank">🌐 kleit.ac.in</a> &nbsp;·&nbsp; 📞 0836 223 2681
-            </div>
+            <div class="sidebar-footer"><a href="https://kleit.ac.in" target="_blank">🌐 kleit.ac.in</a> &nbsp;·&nbsp; 📞 0836 223 2681</div>
         </aside>
 
-        <!-- ── Main ── -->
         <main class="main">
             <div class="topbar">
                 <div class="topbar-title">KLE Institute of <span>Technology</span></div>
                 <div class="topbar-meta">Hubli, Karnataka · VTU Affiliated</div>
             </div>
-
             <div class="messages" id="messages">
-                <!-- Welcome card -->
                 <div class="welcome-card">
                     <h2>Welcome to KLEIT Admission Guidance 🎓</h2>
-                    <p>I'm your AI-powered admission assistant. Ask me anything about courses, eligibility, fees, KCET/COMEDK process, placements, or campus life at KLE Institute of Technology, Hubli.</p>
+                    <p>I'm your AI-powered admission counsellor. Ask me anything about courses, fees, KCET/COMEDK process, eligibility, placements, or campus life at KLE Institute of Technology, Hubli.</p>
                     <div class="quick-chips">
-                        <button class="chip" onclick="quickAsk('What UG courses are offered?')">UG Courses</button>
-                        <button class="chip" onclick="quickAsk('What is the fee structure?')">Fee Structure</button>
+                        <button class="chip" onclick="quickAsk('What UG courses are offered at KLEIT?')">UG Courses</button>
+                        <button class="chip" onclick="quickAsk('What is the fee structure at KLEIT?')">Fee Structure</button>
                         <button class="chip" onclick="quickAsk('How to apply through KCET?')">KCET Process</button>
-                        <button class="chip" onclick="quickAsk('Eligibility for B.E. admission')">Eligibility</button>
-                        <button class="chip" onclick="quickAsk('Tell me about placements')">Placements</button>
+                        <button class="chip" onclick="quickAsk('What is the eligibility for B.E. admission?')">Eligibility</button>
+                        <button class="chip" onclick="quickAsk('Tell me about placements at KLEIT')">Placements</button>
+                        <button class="chip" onclick="quickAsk('What documents do I need for KCET counselling?')">Documents</button>
                     </div>
                 </div>
             </div>
-
             <div class="input-area">
                 <div class="input-row">
                     <div class="input-box">
@@ -618,7 +573,6 @@
         const messages = document.getElementById("messages");
         const SESSION_ID = "kleit_" + Date.now();
 
-        // Enter to send
         input.addEventListener("keydown", e => {
             if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
@@ -626,7 +580,6 @@
             }
         });
 
-        // Auto-resize textarea
         input.addEventListener("input", () => {
             input.style.height = "auto";
             input.style.height = Math.min(input.scrollHeight, 100) + "px";
@@ -637,14 +590,24 @@
             sendMessage();
         }
 
+        // ✅ Format markdown: bold, bullets, newlines
+        function formatText(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // **bold**
+                .replace(/\*(.*?)\*/g, '<em>$1</em>') // *italic*
+                .replace(/^- (.+)$/gm, '• $1') // - bullet → •
+                .replace(/\n/g, '<br>'); // newlines
+        }
+
         function addMessage(text, type) {
             const row = document.createElement("div");
             row.className = `msg-row ${type}`;
             const av = type === "user" ? "🧑" : "🎓";
             const avClass = type === "user" ? "user-av" : "bot-av";
+            const formatted = type === "bot" ? formatText(text) : text;
             row.innerHTML = `
       <div class="avatar ${avClass}">${av}</div>
-      <div class="bubble ${type}">${text}</div>
+      <div class="bubble ${type}">${formatted}</div>
     `;
             messages.appendChild(row);
             messages.scrollTop = messages.scrollHeight;
@@ -654,10 +617,7 @@
             const row = document.createElement("div");
             row.className = "typing-row";
             row.id = "typing";
-            row.innerHTML = `
-      <div class="avatar bot-av">🎓</div>
-      <div class="typing-bubble"><span></span><span></span><span></span></div>
-    `;
+            row.innerHTML = `<div class="avatar bot-av">🎓</div><div class="typing-bubble"><span></span><span></span><span></span></div>`;
             messages.appendChild(row);
             messages.scrollTop = messages.scrollHeight;
         }
@@ -670,12 +630,10 @@
         async function sendMessage() {
             const text = input.value.trim();
             if (!text) return;
-
             addMessage(text, "user");
             input.value = "";
             input.style.height = "auto";
             showTyping();
-
             try {
                 const res = await fetch("http://127.0.0.1:5000/chat", {
                     method: "POST",
